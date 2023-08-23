@@ -25,6 +25,7 @@ import ktsoup.KtSoupParser
 @Composable
 internal fun App() {
     val getting = remember { Getting() }
+
     Surface {
         Scaffold(
             topBar = {
