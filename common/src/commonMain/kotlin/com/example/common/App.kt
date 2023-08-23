@@ -11,9 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.ktor.client.*
-import io.ktor.client.call.*
 import io.ktor.client.plugins.*
-import io.ktor.client.plugins.cache.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
@@ -74,7 +72,7 @@ internal class Getting {
 
     private val baseUrl = "https://www.nineanime.com"
 
-    val headers: List<Pair<String, String>> = listOf(
+    private val headers: List<Pair<String, String>> = listOf(
         HttpHeaders.UserAgent to "Mozilla/5.0 (Windows NT 10.0; WOW64) Gecko/20100101 Firefox/77",
         HttpHeaders.AcceptLanguage to "en-US,en;q=0.5"
     )
