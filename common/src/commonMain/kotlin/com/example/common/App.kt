@@ -10,16 +10,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.ktor.client.*
-import io.ktor.client.plugins.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import io.ktor.http.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import ktsoup.KtSoupParser
+import ktsoup.parseRemote
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -73,24 +69,12 @@ internal class Getting {
 
     private val baseUrl = "https://www.nineanime.com"
 
-    private val headers: List<Pair<String, String>> = listOf(
-        HttpHeaders.UserAgent to "Mozilla/5.0 (Windows NT 10.0; WOW64) Gecko/20100101 Firefox/77",
-        HttpHeaders.AcceptLanguage to "en-US,en;q=0.5"
-    )
-
-    private val client = HttpClient {
-        defaultRequest { this@Getting.headers.forEach { header(it.first, it.second) } }
-        followRedirects = true
-    }
-
     init {
         viewModelScope.launch { getItems() }
     }
 
     private suspend fun getItems() {
-        viewState = client.get("$baseUrl/category/index_1.html?sort=updated")
-            .bodyAsText()
-            .let { KtSoupParser.parse(it) }
+        viewState = KtSoupParser.parseRemote("$baseUrl/category/index_1.html?sort=updated")
             .use { doc ->
                 doc
                     .querySelectorAll("div.post")
