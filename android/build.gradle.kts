@@ -13,7 +13,12 @@ repositories {
 
 dependencies {
     implementation(project(":common"))
-    implementation("androidx.activity:activity-compose:1.6.1")
+    implementation("androidx.activity:activity-compose:1.7.2")
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
+    implementation("com.github.jakepurple13.HelpfulTools:helpfulutils:10.6.5")
+    val datastore = "1.1.0-alpha04"
+    implementation("androidx.datastore:datastore:$datastore")
+    implementation("androidx.datastore:datastore-preferences:$datastore")
 }
 
 android {

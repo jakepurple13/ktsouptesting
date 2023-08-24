@@ -71,8 +71,8 @@ kotlin {
 
         val androidMain by getting {
             dependencies {
-                api("androidx.appcompat:appcompat:1.6.0")
-                api("androidx.core:core-ktx:1.9.0")
+                api("androidx.appcompat:appcompat:1.6.1")
+                api("androidx.core:core-ktx:1.10.1")
                 api("io.ktor:ktor-client-cio:$ktorVersion")
             }
         }
@@ -88,7 +88,7 @@ kotlin {
 
         val jsMain by getting {
             dependencies {
-                api(compose.web.core)
+                api(compose.html.core)
                 implementation("io.ktor:ktor-client-js:$ktorVersion")
                 implementation("io.ktor:ktor-client-json-js:$ktorVersion")
             }
