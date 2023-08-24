@@ -16,20 +16,19 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.7.2")
     implementation("androidx.work:work-runtime-ktx:2.8.1")
     implementation("com.github.jakepurple13.HelpfulTools:helpfulutils:10.6.5")
-    val datastore = "1.1.0-alpha04"
-    implementation("androidx.datastore:datastore:$datastore")
-    implementation("androidx.datastore:datastore-preferences:$datastore")
+    implementation("androidx.browser:browser:1.6.0")
 }
 
 android {
-    compileSdkVersion(33)
-    compileSdk = 33
+    compileSdkVersion(34)
+    compileSdk = 34
+    namespace = "com.example.android"
     defaultConfig {
         applicationId = "com.example.android"
         minSdkVersion(24)
         minSdk = 24
         targetSdk = 33
-        targetSdkVersion(33)
+        targetSdkVersion(34)
         versionCode = 1
         versionName = "1.0-SNAPSHOT"
     }
