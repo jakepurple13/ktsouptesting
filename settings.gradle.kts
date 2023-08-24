@@ -20,5 +20,5 @@ rootProject.name = "ktsouptesting"
 
 include(":android")
 include(":desktop")
-include(":jsApp")
+//include(":jsApp")
 include(":common")

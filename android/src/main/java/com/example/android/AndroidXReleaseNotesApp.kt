@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import androidx.work.*
+import com.example.common.AndroidXDataStore
 import com.example.common.toReleaseNotes
 import com.programmersbox.helpfulutils.NotificationDslBuilder
 import com.programmersbox.helpfulutils.createNotificationChannel
@@ -42,7 +43,7 @@ class AndroidXChecker(appContext: Context, params: WorkerParameters) : Coroutine
     override suspend fun doWork(): Result {
         withContext(Dispatchers.IO) {
             val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-            val last = withContext(Dispatchers.Default) { applicationContext.lastUpdate.first() }
+            val last = withContext(Dispatchers.Default) { AndroidXDataStore.lastUpdate.first() }
 
             val info = KtSoupParser.parseRemote("https://developer.android.com/feeds/androidx-release-notes.xml")
 
@@ -65,7 +66,7 @@ class AndroidXChecker(appContext: Context, params: WorkerParameters) : Coroutine
 
                 applicationContext.notificationManager.notify(12, n)
 
-                applicationContext.updatePref(LAST_UPDATE, latest)
+                AndroidXDataStore.updateLastUpdate(latest)
             }
 
             return@withContext Result.success()

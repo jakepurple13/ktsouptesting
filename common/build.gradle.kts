@@ -20,9 +20,9 @@ kotlin {
             kotlinOptions.jvmTarget = "11"
         }
     }
-    js(IR) {
+    /*js(IR) {
         browser()
-    }
+    }*/
     ios()
     iosX64()
     iosArm64()
@@ -60,6 +60,10 @@ kotlin {
                 api("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 api("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
                 api("io.ktor:ktor-client-logging:$ktorVersion")
+                val datastore = "1.1.0-alpha04"
+                api("androidx.datastore:datastore-core:$datastore")
+                api("androidx.datastore:datastore-preferences-core:$datastore")
+                api("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
             }
         }
 
@@ -86,13 +90,15 @@ kotlin {
 
         val desktopTest by getting
 
+        /*
+        //TODO: MAYBE set up a ktor server that all requests go through and we do the getting through the ktor server?
         val jsMain by getting {
             dependencies {
                 api(compose.html.core)
                 implementation("io.ktor:ktor-client-js:$ktorVersion")
                 implementation("io.ktor:ktor-client-json-js:$ktorVersion")
             }
-        }
+        }*/
 
         val iosX64Main by getting
         val iosArm64Main by getting
